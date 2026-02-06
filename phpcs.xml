@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="AI Gemini Content Generator">
+  <rule ref="PSR12"/>
+  <file>src</file>
+  <file>tests</file>
+  <exclude-pattern>vendor/*</exclude-pattern>
+</ruleset>

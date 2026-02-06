@@ -1,0 +1,7 @@
+administer ai gemini content generator:
+  title: 'Administer AI Gemini Content Generator'
+  description: 'Configure provider defaults for the Gemini content generator.'
+
+generate ai gemini content:
+  title: 'Generate AI Gemini content'
+  description: 'Generate content drafts using the Gemini content generator.'

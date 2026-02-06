@@ -1,0 +1,15 @@
+ai_gemini_content_generator.settings:
+  path: '/admin/config/ai/gemini-content-generator'
+  defaults:
+    _form: '\\Drupal\\ai_gemini_content_generator\\Form\\ContentGeneratorSettingsForm'
+    _title: 'AI Gemini Content Generator'
+  requirements:
+    _permission: 'administer ai gemini content generator'
+
+ai_gemini_content_generator.generate:
+  path: '/admin/content/ai-gemini-content-generator'
+  defaults:
+    _form: '\\Drupal\\ai_gemini_content_generator\\Form\\ContentGeneratorForm'
+    _title: 'AI Gemini Content Generator'
+  requirements:
+    _permission: 'generate ai gemini content'

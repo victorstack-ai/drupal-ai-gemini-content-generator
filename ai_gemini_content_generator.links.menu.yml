@@ -1,0 +1,13 @@
+ai_gemini_content_generator.settings:
+  title: 'AI Gemini Content Generator'
+  description: 'Configure the Gemini provider and model defaults.'
+  route_name: ai_gemini_content_generator.settings
+  parent: system.admin_config_services
+  weight: 30
+
+ai_gemini_content_generator.generate:
+  title: 'AI Gemini Content Generator'
+  description: 'Generate AI content drafts using Gemini.'
+  route_name: ai_gemini_content_generator.generate
+  parent: system.admin_content
+  weight: 40

@@ -1,0 +1,16 @@
+services:
+  ai_gemini_content_generator.prompt_builder:
+    class: Drupal\ai_gemini_content_generator\Service\PromptBuilder
+
+  ai_gemini_content_generator.chat_client:
+    class: Drupal\ai_gemini_content_generator\Client\AiModuleChatClient
+    arguments:
+      - '@ai.provider'
+      - '@config.factory'
+      - '@logger.channel.ai_gemini_content_generator'
+
+  ai_gemini_content_generator.content_generator:
+    class: Drupal\ai_gemini_content_generator\Service\ContentGenerator
+    arguments:
+      - '@ai_gemini_content_generator.chat_client'
+      - '@ai_gemini_content_generator.prompt_builder'

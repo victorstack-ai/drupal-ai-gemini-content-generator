@@ -1,0 +1,7 @@
+name: AI Gemini Content Generator
+type: module
+description: 'Generates Drupal content drafts using the AI module and a Gemini provider.'
+package: AI
+core_version_requirement: ^10 || ^11
+dependencies:
+  - ai:ai
