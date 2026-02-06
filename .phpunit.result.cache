@@ -1,1 +1,0 @@
-{"version":2,"defects":[],"times":{"Drupal\\ai_gemini_content_generator\\Tests\\Unit\\ContentGeneratorTest::testGeneratesContentAndExtractsTitle":0.001,"Drupal\\ai_gemini_content_generator\\Tests\\Unit\\ContentGeneratorTest::testFallsBackWhenNoTitleProvided":0,"Drupal\\ai_gemini_content_generator\\Tests\\Unit\\PromptBuilderTest::testBuildsPromptWithInputs":0}}
