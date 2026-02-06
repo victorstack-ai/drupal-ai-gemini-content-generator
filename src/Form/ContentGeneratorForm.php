@@ -7,6 +7,7 @@ namespace Drupal\ai_gemini_content_generator\Form;
 use Drupal\ai_gemini_content_generator\Service\ContentGenerator;
 use Drupal\ai_gemini_content_generator\ValueObject\GeneratedContent;
 use Drupal\ai_gemini_content_generator\ValueObject\GenerationRequest;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -14,8 +15,11 @@ use Throwable;
 
 final class ContentGeneratorForm extends FormBase
 {
+    private const SETTINGS_KEY = 'ai_gemini_content_generator.settings';
+
     public function __construct(
         private readonly ContentGenerator $contentGenerator,
+        private readonly ConfigFactoryInterface $configFactory,
     ) {
     }
 
@@ -23,6 +27,7 @@ final class ContentGeneratorForm extends FormBase
     {
         return new self(
             $container->get('ai_gemini_content_generator.content_generator'),
+            $container->get('config.factory'),
         );
     }
 
@@ -33,6 +38,9 @@ final class ContentGeneratorForm extends FormBase
 
     public function buildForm(array $form, FormStateInterface $form_state): array
     {
+        $config = $this->configFactory->get(self::SETTINGS_KEY);
+        $default_model = (string) ($config->get('default_model') ?? 'gemini-2.0-flash');
+
         $form['topic'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Topic'),
@@ -57,6 +65,19 @@ final class ContentGeneratorForm extends FormBase
         '#min' => 150,
         '#max' => 2000,
         '#default_value' => 600,
+        ];
+
+        $form['model'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Model'),
+        '#options' => [
+            'gemini-2.0-flash' => $this->t('Gemini 2.0 Flash (fast)'),
+            'gemini-1.5-flash' => $this->t('Gemini 1.5 Flash'),
+            'gemini-1.5-pro' => $this->t('Gemini 1.5 Pro'),
+        ],
+        '#empty_value' => '',
+        '#empty_option' => $this->t('Use default (@model)', ['@model' => $default_model]),
+        '#description' => $this->t('Pick a model override for this draft. Leave empty to use the default.'),
         ];
 
         $form['keywords'] = [

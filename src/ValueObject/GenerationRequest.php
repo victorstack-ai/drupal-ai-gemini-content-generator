@@ -15,6 +15,7 @@ final class GenerationRequest
         private readonly string $tone,
         private readonly int $length,
         private readonly array $keywords = [],
+        private readonly string $model = '',
     ) {
     }
 
@@ -31,6 +32,7 @@ final class GenerationRequest
             (string) ($values['tone'] ?? ''),
             (int) ($values['length'] ?? 0),
             $keywords,
+            (string) ($values['model'] ?? ''),
         );
     }
 
@@ -60,5 +62,10 @@ final class GenerationRequest
     public function keywords(): array
     {
         return $this->keywords;
+    }
+
+    public function model(): string
+    {
+        return $this->model;
     }
 }

@@ -19,7 +19,7 @@ final class ContentGenerator
     public function generate(GenerationRequest $request): GeneratedContent
     {
         $prompt = $this->promptBuilder->build($request);
-        $response = $this->chatClient->generate($prompt);
+        $response = $this->chatClient->generate($prompt, $request->model());
 
         [$title, $body] = $this->extractTitleAndBody($response);
 

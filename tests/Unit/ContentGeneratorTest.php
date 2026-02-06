@@ -30,6 +30,27 @@ final class ContentGeneratorTest extends TestCase
         self::assertSame('This is the body.', $result->body());
     }
 
+    public function testPassesModelOverrideToClient(): void
+    {
+        $chat_client = new class () implements ChatClientInterface {
+            public string $model = '';
+
+            public function generate(string $prompt, string $model = ''): string
+            {
+                $this->model = $model;
+
+                return "Title: Fast Draft\nBody.";
+            }
+        };
+
+        $generator = new ContentGenerator($chat_client, new PromptBuilder());
+        $request = new GenerationRequest('Drupal AI', '', '', 0, [], 'gemini-2.0-flash');
+
+        $generator->generate($request);
+
+        self::assertSame('gemini-2.0-flash', $chat_client->model);
+    }
+
     public function testFallsBackWhenNoTitleProvided(): void
     {
         $chat_client = new class () implements ChatClientInterface {

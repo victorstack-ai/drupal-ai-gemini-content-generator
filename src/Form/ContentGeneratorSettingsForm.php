@@ -36,8 +36,11 @@ final class ContentGeneratorSettingsForm extends ConfigFormBase
         $form['default_model'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Default model'),
-        '#default_value' => $config->get('default_model') ?? 'gemini-1.5-flash',
-        '#description' => $this->t('Model ID used when the generator does not specify one.'),
+        '#default_value' => $config->get('default_model') ?? 'gemini-2.0-flash',
+        '#description' => $this->t(
+            'Model ID used when the generator does not specify one. ' .
+            'Recommended: Gemini 2.0 Flash.',
+        ),
         '#required' => true,
         ];
 
