@@ -3,6 +3,8 @@
   "description": "AI-powered Drupal content generator using the AI module with Gemini.",
   "type": "drupal-module",
   "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "repositories": [
     {
       "type": "composer",
